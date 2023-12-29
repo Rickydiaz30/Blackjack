@@ -179,8 +179,8 @@ function startGame() {
   setTimeout(() => {
     stay.classList.remove('hidden');
     hit.classList.remove('hidden');
+    checkForPlayerBlackjack();
   }, 3500);
-  checkForPlayerBlackjack();
 }
 
 function placeBet25() {
