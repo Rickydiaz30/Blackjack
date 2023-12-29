@@ -2,20 +2,15 @@ const dealerCards = document.querySelector('.dealer-cards');
 const playerCards = document.querySelector('.player-cards');
 const dealerPoints = document.querySelector('.dealer-points');
 const playerPoints = document.querySelector('.player-points');
-
-const deal = document.querySelector('.deal');
 const hit = document.querySelector('.hit');
 const stay = document.querySelector('.stay');
-
 const bank = document.querySelector('.bank');
 const bet = document.querySelector('.bet');
-
+const placeBet = document.querySelector('.place-bet');
+const chipContainer = document.querySelector('.chip-container');
 const twentyFive = document.querySelector('.twenty-five');
 const fifty = document.querySelector('.fifty');
 const hundred = document.querySelector('.hundred');
-
-stay.classList.add('hidden');
-hit.classList.add('hidden');
 
 let dealerPointsTotal;
 let playerPointsTotal;
@@ -26,6 +21,9 @@ let hasBeenReduced = false;
 let img1;
 let img2;
 let dealerImage1;
+let canBet = true;
+let canHit = true;
+let canStay = true;
 
 let card = {
   cardNumber: '',
@@ -46,6 +44,8 @@ let playerBank = {
 let winnings = {
   total: 0,
 };
+
+hideButtons();
 
 //Create a random card
 function createRandomCard() {
@@ -84,6 +84,11 @@ function createRandomCard() {
   return randomCard;
 }
 
+function hideButtons() {
+  stay.classList.add('hidden');
+  hit.classList.add('hidden');
+}
+
 function createDealersFirstCard() {
   img1 = document.createElement('img');
   img1.src = 'images/BACK.png';
@@ -94,7 +99,6 @@ function createDealersFirstCard() {
   if (card.cardNumber === 'A') {
     dealerAceCount++;
   }
-  console.log(dealerImage1);
   return points;
 }
 
@@ -134,6 +138,13 @@ function startGame() {
   }, 500);
 
   setTimeout(() => {
+    createPlayerCards();
+    let audio = new Audio('mouse-click.mp3');
+    audio.play();
+    point3 = card.points;
+  }, 1000);
+
+  setTimeout(() => {
     createDealersSecondCard();
     let audio = new Audio('mouse-click.mp3');
     audio.play();
@@ -143,18 +154,7 @@ function startGame() {
       point2 = card.points;
     }
     dealerPointsTotal = point1 + point2;
-  }, 1000);
-
-  setTimeout(() => {
-    dealerPoints.textContent = 'LETS PLAY !';
   }, 1500);
-
-  setTimeout(() => {
-    createPlayerCards();
-    let audio = new Audio('mouse-click.mp3');
-    audio.play();
-    point3 = card.points;
-  }, 2000);
 
   setTimeout(() => {
     createPlayerCards();
@@ -167,9 +167,11 @@ function startGame() {
     }
     playerPointsTotal = point3 + point4;
 
-    deal.disabled = true;
-    deal.classList.add('.hidden');
     checkForPlayerBlackjack();
+  }, 2000);
+
+  setTimeout(() => {
+    dealerPoints.textContent = 'LETS PLAY !';
   }, 2500);
 
   setTimeout(() => {
@@ -183,27 +185,68 @@ function startGame() {
 }
 
 function placeBet25() {
-  playerBet.total += 25;
-  playerBank.total -= 25;
-  bet.textContent = playerBet.total;
-  bank.textContent = playerBank.total;
-  console.log(playerBet.total, playerBet.initial);
+  if (playerBank.total >= 25) {
+    playerBet.total += 25;
+    playerBank.total -= 25;
+    bet.textContent = playerBet.total;
+    bank.textContent = playerBank.total;
+    console.log(playerBet.total);
+  }
 }
 
 function placeBet50() {
-  playerBet.total += 50;
-  playerBank.total -= 50;
-  bet.textContent = playerBet.total;
-  bank.textContent = playerBank.total;
-  console.log(playerBet.total, playerBet.initial);
+  if (playerBank.total >= 50) {
+    playerBet.total += 50;
+    playerBank.total -= 50;
+    bet.textContent = playerBet.total;
+    bank.textContent = playerBank.total;
+  }
 }
 
 function placeBet100() {
-  playerBet.total += 100;
-  playerBank.total -= 100;
-  bet.textContent = playerBet.total;
-  bank.textContent = playerBank.total;
-  console.log(playerBet.total, playerBet.initial);
+  if (playerBank.total >= 100) {
+    playerBet.total += 100;
+    playerBank.total -= 100;
+    bet.textContent = playerBet.total;
+    bank.textContent = playerBank.total;
+  }
+}
+
+function preventAddingMoreChips() {
+  if (playerBank.total === 0 || playerBank.total < 0) {
+    chipContainer.classList.add('hidden');
+  }
+}
+
+function payout() {
+  if (playerPointsTotal === 21) {
+    winnings.total = playerBet.total * 2.5;
+    playerBank.total += winnings.total;
+    bank.textContent = playerBank.total;
+  } else if (playerPointsTotal === dealerPointsTotal) {
+    winnings.total = playerBet.total;
+    playerBank.total += winnings.total;
+    bank.textContent = playerBank.total;
+  } else {
+    winnings.total = playerBet.total * 2;
+    playerBank.total += winnings.total;
+    bank.textContent = playerBank.total;
+  }
+}
+
+function resetBet() {
+  playerBet.total = 0;
+  bet.textContent = '';
+}
+
+function checkForBankBust() {
+  if (playerBank.total <= 0) {
+    hideButtons();
+    clearTable();
+    dealerPoints.textContent = 'GAME OVER!!!';
+    playerBank.total = 1000;
+    bank.textContent = playerBank.total;
+  }
 }
 
 function createHitCard() {
@@ -257,29 +300,23 @@ function addToDealersCards() {
     if (dealerPointsTotal > playerPointsTotal && dealerPointsTotal < 21) {
       dealerPoints.textContent = `${dealerPointsTotal} POINTS DEALER WINS!!!`;
 
+      resetBet();
+      checkForBankBust();
       setTimeout(() => {
-        stay.classList.add('hidden');
-        hit.classList.add('hidden');
+        hideButtons();
+        chipContainer.classList.remove('hidden');
         clearTable();
       }, 1000);
-
-      setTimeout(() => {
-        startGame();
-      }, 2000);
-      return;
     } else if (dealerPointsTotal === playerPointsTotal) {
       dealerPoints.textContent = 'TIE!!!';
+      payout();
+      resetBet();
 
       setTimeout(() => {
-        stay.classList.add('hidden');
-        hit.classList.add('hidden');
+        hideButtons();
+        chipContainer.classList.remove('hidden');
         clearTable();
       }, 1000);
-
-      setTimeout(() => {
-        startGame();
-      }, 2000);
-      return;
     }
   }
 }
@@ -288,16 +325,15 @@ function checkForPlayerBlackjack() {
   if (playerPointsTotal === 21) {
     playerPoints.textContent = 'BLACKJACK!!! YOU WIN!!!';
 
-    setTimeout(() => {
-      stay.classList.add('hidden');
-      hit.classList.add('hidden');
-      clearTable();
-    }, 1000);
+    payout();
+
+    resetBet();
 
     setTimeout(() => {
-      startGame();
-    }, 2000);
-    return;
+      hideButtons();
+      chipContainer.classList.remove('hidden');
+      clearTable();
+    }, 1000);
   }
 }
 
@@ -306,16 +342,13 @@ function checkForDealerBlackjack() {
     clearInterval(intervalId);
     dealerPoints.textContent = 'BLACKJACK!!! DEALER WINS!!!';
 
+    resetBet();
+    checkForBankBust();
     setTimeout(() => {
-      stay.classList.add('hidden');
-      hit.classList.add('hidden');
+      hideButtons();
+      chipContainer.classList.remove('hidden');
       clearTable();
     }, 1000);
-
-    setTimeout(() => {
-      startGame();
-    }, 2000);
-    return;
   }
 }
 
@@ -340,20 +373,16 @@ function checkForPlayerBust() {
     reduceAcePlayer();
   }
 
-  console.log(hasBeenReduced);
   if (playerPointsTotal > 21) {
     playerPoints.textContent = 'BUSTED!!! YOU LOSE!!!';
 
+    resetBet();
+    checkForBankBust();
     setTimeout(() => {
-      stay.classList.add('hidden');
-      hit.classList.add('hidden');
+      hideButtons();
+      chipContainer.classList.remove('hidden');
       clearTable();
     }, 1000);
-
-    setTimeout(() => {
-      startGame();
-    }, 2000);
-    return;
   }
 }
 
@@ -364,33 +393,30 @@ function checkForDealerBust() {
 
   if (dealerPointsTotal > 21) {
     dealerPoints.textContent = 'BUSTED!!! DEALER LOSES!!!';
-    setTimeout(() => {
-      stay.classList.add('hidden');
-      hit.classList.add('hidden');
-      clearTable();
-    }, 1000);
+
+    payout();
+
+    resetBet();
 
     setTimeout(() => {
-      startGame();
-    }, 2000);
-    return;
+      hideButtons();
+      chipContainer.classList.remove('hidden');
+      clearTable();
+    }, 1000);
   }
 }
 
 function checkForTie() {
   if (dealerPointsTotal === playerPointsTotal) {
     dealerPoints.textContent = 'TIE!!!';
+    payout();
+    resetBet();
 
     setTimeout(() => {
-      stay.classList.add('hidden');
-      hit.classList.add('hidden');
+      hideButtons();
+      chipContainer.classList.remove('hidden');
       clearTable();
     }, 1000);
-
-    setTimeout(() => {
-      startGame();
-    }, 2000);
-    return;
   }
 }
 
@@ -404,53 +430,69 @@ function clearTable() {
   dealerPoints.textContent = '';
   dealerAceCount = 0;
   playerAceCount = 0;
+  canBet = true;
+  canHit = true;
+  canStay = true;
 }
 
-deal.addEventListener('click', () => {
-  startGame();
-  deal.classList.add('hidden');
+placeBet.addEventListener('click', () => {
+  if (playerBet.total > 0 && canBet === true) {
+    clearTable();
+    chipContainer.classList.add('hidden');
+    startGame();
+    canBet = false;
+  }
 });
 
 twentyFive.addEventListener('click', () => {
   placeBet25();
+  preventAddingMoreChips();
 });
 
 fifty.addEventListener('click', () => {
   placeBet50();
+  preventAddingMoreChips();
 });
 
 hundred.addEventListener('click', () => {
   placeBet100();
+  preventAddingMoreChips();
 });
 
 hit.addEventListener('click', () => {
-  createHitCard();
+  if (canHit === true) {
+    createHitCard();
+  }
 });
 
 stay.addEventListener('click', () => {
-  img1.src = dealerImage1;
-  let audio = new Audio('mouse-click.mp3');
-  audio.play();
-  dealerPoints.textContent = dealerPointsTotal + ' POINTS';
-  checkForTie();
-  checkForDealerBlackjack();
+  canHit = false;
+  if (canStay === true) {
+    img1.src = dealerImage1;
+    let audio = new Audio('mouse-click.mp3');
+    audio.play();
+    dealerPoints.textContent = dealerPointsTotal + ' POINTS';
+    checkForTie();
+    checkForDealerBlackjack();
 
-  if (dealerPointsTotal < 21 && dealerPointsTotal < playerPointsTotal) {
-    intervalId = setInterval(() => {
-      addToDealersCards();
-    }, 2000);
-  } else if (dealerPointsTotal > playerPointsTotal && dealerPointsTotal < 21) {
-    dealerPoints.textContent = 'DEALER WINS!!!';
+    if (dealerPointsTotal < 21 && dealerPointsTotal < playerPointsTotal) {
+      intervalId = setInterval(() => {
+        addToDealersCards();
+      }, 2000);
+    } else if (
+      dealerPointsTotal > playerPointsTotal &&
+      dealerPointsTotal < 21
+    ) {
+      dealerPoints.textContent = 'DEALER WINS!!!';
 
-    setTimeout(() => {
-      stay.classList.add('hidden');
-      hit.classList.add('hidden');
-      clearTable();
-    }, 1000);
-
-    setTimeout(() => {
-      startGame();
-    }, 2000);
-    return;
+      resetBet();
+      checkForBankBust();
+      setTimeout(() => {
+        hideButtons();
+        chipContainer.classList.remove('hidden');
+        clearTable();
+      }, 1000);
+    }
+    canStay = false;
   }
 });
