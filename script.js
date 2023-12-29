@@ -166,8 +166,6 @@ function startGame() {
       point4 = card.points;
     }
     playerPointsTotal = point3 + point4;
-
-    checkForPlayerBlackjack();
   }, 2000);
 
   setTimeout(() => {
@@ -182,6 +180,7 @@ function startGame() {
     stay.classList.remove('hidden');
     hit.classList.remove('hidden');
   }, 3500);
+  checkForPlayerBlackjack();
 }
 
 function placeBet25() {
@@ -241,11 +240,13 @@ function resetBet() {
 
 function checkForBankBust() {
   if (playerBank.total <= 0) {
-    hideButtons();
-    clearTable();
     dealerPoints.textContent = 'GAME OVER!!!';
-    playerBank.total = 1000;
-    bank.textContent = playerBank.total;
+    setTimeout(() => {
+      hideButtons();
+      clearTable();
+      playerBank.total = 1000;
+      bank.textContent = playerBank.total;
+    }, 2000);
   }
 }
 
@@ -324,13 +325,12 @@ function addToDealersCards() {
 function checkForPlayerBlackjack() {
   if (playerPointsTotal === 21) {
     playerPoints.textContent = 'BLACKJACK!!! YOU WIN!!!';
-
+    hideButtons();
     payout();
 
     resetBet();
 
     setTimeout(() => {
-      hideButtons();
       chipContainer.classList.remove('hidden');
       clearTable();
     }, 1000);
