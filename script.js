@@ -189,7 +189,8 @@ function placeBet25() {
     playerBank.total -= 25;
     bet.textContent = playerBet.total;
     bank.textContent = playerBank.total;
-    console.log(playerBet.total);
+    let audio = new Audio('mouse-click.mp3');
+    audio.play();
   }
 }
 
@@ -199,6 +200,8 @@ function placeBet50() {
     playerBank.total -= 50;
     bet.textContent = playerBet.total;
     bank.textContent = playerBank.total;
+    let audio = new Audio('mouse-click.mp3');
+    audio.play();
   }
 }
 
@@ -208,6 +211,8 @@ function placeBet100() {
     playerBank.total -= 100;
     bet.textContent = playerBet.total;
     bank.textContent = playerBank.total;
+    let audio = new Audio('mouse-click.mp3');
+    audio.play();
   }
 }
 
@@ -437,6 +442,8 @@ function clearTable() {
 
 placeBet.addEventListener('click', () => {
   if (playerBet.total > 0 && canBet === true) {
+    let audio = new Audio('mouse-click.mp3');
+    audio.play();
     clearTable();
     chipContainer.classList.add('hidden');
     startGame();
