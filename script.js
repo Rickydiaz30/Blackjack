@@ -132,55 +132,55 @@ function startGame() {
 
   setTimeout(() => {
     createDealersFirstCard();
-    let audio = new Audio('mouse-click.mp3');
-    audio.play();
+    let cardAudio = new Audio('card-sounds.mp3');
+    cardAudio.play();
     point1 = card.points;
-  }, 500);
-
-  setTimeout(() => {
-    createPlayerCards();
-    let audio = new Audio('mouse-click.mp3');
-    audio.play();
-    point3 = card.points;
   }, 1000);
 
   setTimeout(() => {
+    createPlayerCards();
+    let cardAudio = new Audio('card-sounds.mp3');
+    cardAudio.play();
+    point3 = card.points;
+  }, 1500);
+
+  setTimeout(() => {
     createDealersSecondCard();
-    let audio = new Audio('mouse-click.mp3');
-    audio.play();
+    let cardAudio = new Audio('card-sounds.mp3');
+    cardAudio.play();
     if (dealerAceCount > 1) {
       point2 = 1;
     } else {
       point2 = card.points;
     }
     dealerPointsTotal = point1 + point2;
-  }, 1500);
+  }, 2000);
 
   setTimeout(() => {
     createPlayerCards();
-    let audio = new Audio('mouse-click.mp3');
-    audio.play();
+    let cardAudio = new Audio('card-sounds.mp3');
+    cardAudio.play();
     if (playerAceCount > 1) {
       point4 = 1;
     } else {
       point4 = card.points;
     }
     playerPointsTotal = point3 + point4;
-  }, 2000);
-
-  setTimeout(() => {
-    dealerPoints.textContent = 'LETS PLAY !';
   }, 2500);
 
   setTimeout(() => {
-    playerPoints.textContent = playerPointsTotal + ' POINTS';
+    dealerPoints.textContent = 'LETS PLAY !';
   }, 3000);
+
+  setTimeout(() => {
+    playerPoints.textContent = playerPointsTotal + ' POINTS';
+  }, 3500);
 
   setTimeout(() => {
     stay.classList.remove('hidden');
     hit.classList.remove('hidden');
     checkForPlayerBlackjack();
-  }, 3500);
+  }, 4000);
 }
 
 function placeBet25() {
@@ -189,7 +189,7 @@ function placeBet25() {
     playerBank.total -= 25;
     bet.textContent = playerBet.total;
     bank.textContent = playerBank.total;
-    let audio = new Audio('mouse-click.mp3');
+    let audio = new Audio('poker-chip.mp3');
     audio.play();
   }
 }
@@ -200,7 +200,7 @@ function placeBet50() {
     playerBank.total -= 50;
     bet.textContent = playerBet.total;
     bank.textContent = playerBank.total;
-    let audio = new Audio('mouse-click.mp3');
+    let audio = new Audio('poker-chip.mp3');
     audio.play();
   }
 }
@@ -211,7 +211,7 @@ function placeBet100() {
     playerBank.total -= 100;
     bet.textContent = playerBet.total;
     bank.textContent = playerBank.total;
-    let audio = new Audio('mouse-click.mp3');
+    let audio = new Audio('poker-chip.mp3');
     audio.play();
   }
 }
@@ -259,8 +259,8 @@ function createHitCard() {
   const img = document.createElement('img');
   img.src = createRandomCard();
   playerCards.appendChild(img);
-  let audio = new Audio('mouse-click.mp3');
-  audio.play();
+  let cardAudio = new Audio('card-sounds.mp3');
+  cardAudio.play();
   img.classList.add('cards');
   if (card.cardNumber === 'A' && playerAceCount >= 1) {
     card.points = 1;
@@ -286,8 +286,8 @@ function addToDealersCards() {
     const img = document.createElement('img');
     img.src = createRandomCard();
     dealerCards.appendChild(img);
-    let audio = new Audio('mouse-click.mp3');
-    audio.play();
+    let cardAudio = new Audio('card-sounds.mp3');
+    cardAudio.play();
     img.classList.add('cards');
 
     if (card.cardNumber === 'A' && dealerAceCount >= 1) {
@@ -442,7 +442,7 @@ function clearTable() {
 
 placeBet.addEventListener('click', () => {
   if (playerBet.total > 0 && canBet === true) {
-    let audio = new Audio('mouse-click.mp3');
+    let audio = new Audio('cash-register.mp3');
     audio.play();
     clearTable();
     chipContainer.classList.add('hidden');
@@ -476,8 +476,8 @@ stay.addEventListener('click', () => {
   canHit = false;
   if (canStay === true) {
     img1.src = dealerImage1;
-    let audio = new Audio('mouse-click.mp3');
-    audio.play();
+    let cardAudio = new Audio('card-sounds.mp3');
+    cardAudio.play();
     dealerPoints.textContent = dealerPointsTotal + ' POINTS';
     checkForTie();
     checkForDealerBlackjack();
