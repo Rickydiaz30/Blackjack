@@ -132,21 +132,21 @@ function startGame() {
 
   setTimeout(() => {
     createDealersFirstCard();
-    let cardAudio = new Audio('card-sounds.mp3');
+    let cardAudio = new Audio('sounds/card-sounds.mp3');
     cardAudio.play();
     point1 = card.points;
   }, 1000);
 
   setTimeout(() => {
     createPlayerCards();
-    let cardAudio = new Audio('card-sounds.mp3');
+    let cardAudio = new Audio('sounds/card-sounds.mp3');
     cardAudio.play();
     point3 = card.points;
   }, 1500);
 
   setTimeout(() => {
     createDealersSecondCard();
-    let cardAudio = new Audio('card-sounds.mp3');
+    let cardAudio = new Audio('sounds/card-sounds.mp3');
     cardAudio.play();
     if (dealerAceCount > 1) {
       point2 = 1;
@@ -158,7 +158,7 @@ function startGame() {
 
   setTimeout(() => {
     createPlayerCards();
-    let cardAudio = new Audio('card-sounds.mp3');
+    let cardAudio = new Audio('sounds/card-sounds.mp3');
     cardAudio.play();
     if (playerAceCount > 1) {
       point4 = 1;
@@ -189,7 +189,7 @@ function placeBet25() {
     playerBank.total -= 25;
     bet.textContent = playerBet.total;
     bank.textContent = playerBank.total;
-    let audio = new Audio('poker-chip.mp3');
+    let audio = new Audio('sounds/poker-chip.mp3');
     audio.play();
   }
 }
@@ -200,7 +200,7 @@ function placeBet50() {
     playerBank.total -= 50;
     bet.textContent = playerBet.total;
     bank.textContent = playerBank.total;
-    let audio = new Audio('poker-chip.mp3');
+    let audio = new Audio('sounds/poker-chip.mp3');
     audio.play();
   }
 }
@@ -211,7 +211,7 @@ function placeBet100() {
     playerBank.total -= 100;
     bet.textContent = playerBet.total;
     bank.textContent = playerBank.total;
-    let audio = new Audio('poker-chip.mp3');
+    let audio = new Audio('sounds/poker-chip.mp3');
     audio.play();
   }
 }
@@ -259,7 +259,7 @@ function createHitCard() {
   const img = document.createElement('img');
   img.src = createRandomCard();
   playerCards.appendChild(img);
-  let cardAudio = new Audio('card-sounds.mp3');
+  let cardAudio = new Audio('sounds/card-sounds.mp3');
   cardAudio.play();
   img.classList.add('cards');
   if (card.cardNumber === 'A' && playerAceCount >= 1) {
@@ -286,7 +286,7 @@ function addToDealersCards() {
     const img = document.createElement('img');
     img.src = createRandomCard();
     dealerCards.appendChild(img);
-    let cardAudio = new Audio('card-sounds.mp3');
+    let cardAudio = new Audio('sounds/card-sounds.mp3');
     cardAudio.play();
     img.classList.add('cards');
 
@@ -442,7 +442,7 @@ function clearTable() {
 
 placeBet.addEventListener('click', () => {
   if (playerBet.total > 0 && canBet === true) {
-    let audio = new Audio('cash-register.mp3');
+    let audio = new Audio('sounds/cash-register.mp3');
     audio.play();
     clearTable();
     chipContainer.classList.add('hidden');
@@ -476,7 +476,7 @@ stay.addEventListener('click', () => {
   canHit = false;
   if (canStay === true) {
     img1.src = dealerImage1;
-    let cardAudio = new Audio('card-sounds.mp3');
+    let cardAudio = new Audio('sounds/card-sounds.mp3');
     cardAudio.play();
     dealerPoints.textContent = dealerPointsTotal + ' POINTS';
     checkForTie();
