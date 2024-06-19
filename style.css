@@ -21,7 +21,6 @@ body {
 .span {
   background-color: #fff;
   padding: 0px 40px;
-  /* border: 2px solid black; */
   border-radius: 10px;
   box-shadow: 2px 2px 3px;
 }
@@ -81,7 +80,6 @@ body {
   font-size: 25px;
   font-weight: bold;
   padding: 10px 20px;
-  /* border: 2px solid black; */
   border-radius: 5px;
   width: 100px;
   cursor: pointer;
@@ -89,7 +87,7 @@ body {
 }
 
 .hit:hover {
-  transform: translateY(-3px);
+  transform: translateY(-2px);
   box-shadow: 2px 2px 5px;
 }
 
@@ -97,7 +95,6 @@ body {
   font-size: 25px;
   font-weight: bold;
   padding: 10px 20px;
-  /* border: 2px solid black; */
   border-radius: 5px;
   width: 100px;
   cursor: pointer;
@@ -105,7 +102,7 @@ body {
 }
 
 .stay:hover {
-  transform: translateY(-3px);
+  transform: translateY(-2px);
   box-shadow: 2px 2px 3px;
 }
 
@@ -124,7 +121,6 @@ body {
   font-weight: bold;
   padding: 10px 20px;
   background-color: white;
-  /* border: 2px solid black; */
   border-radius: 5px;
   min-width: 100px;
   min-height: 60px;
@@ -138,13 +134,12 @@ body {
   padding: 5px 20px;
   margin-bottom: 10px;
   background-color: white;
-  /* border: 2px solid black; */
   border-radius: 5px;
   box-shadow: 2px 2px 3px;
 }
 
 .place-bet:hover {
-  transform: translateY(-3px);
+  transform: translateY(-2px);
   box-shadow: 2px 2px 5px;
 }
 
@@ -153,7 +148,6 @@ body {
   font-weight: bold;
   padding: 10px 20px;
   background-color: white;
-  /* border: 2px solid black; */
   border-radius: 5px;
   min-width: 100px;
   min-height: 60px;
@@ -167,7 +161,6 @@ body {
   padding: 5px 20px;
   margin-bottom: 10px;
   background-color: white;
-  /* border: 2px solid black; */
   border-radius: 5px;
   cursor: pointer;
   box-shadow: 2px 2px 3px;
@@ -182,6 +175,12 @@ body {
   border: 8px dashed red;
   cursor: pointer;
   box-shadow: 2px 2px 3px;
+}
+
+.hundred-chip-outer:hover,
+.fifty-chip-outer:hover,
+.twenty-five-chip-outer:hover {
+  transform: translateY(-2px);
 }
 
 .hundred-chip-inner {
