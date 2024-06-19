@@ -65,6 +65,10 @@ body {
   box-shadow: 2px 2px 5px;
 }
 
+.round {
+  border-radius: 3px;
+}
+
 .game-message {
   font-size: 35px;
   font-weight: bold;

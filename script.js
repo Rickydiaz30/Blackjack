@@ -94,7 +94,7 @@ function createDealersFirstCard() {
   img1.src = 'images/BACK.png';
   dealerImage1 = createRandomCard();
   dealerCards.appendChild(img1);
-  img1.classList.add('cards');
+  img1.classList.add('cards', 'round');
   points = card.points;
   if (card.cardNumber === 'A') {
     dealerAceCount++;
