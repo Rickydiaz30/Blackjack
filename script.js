@@ -217,7 +217,7 @@ function placeBet100() {
 }
 
 function preventAddingMoreChips() {
-  if (playerBank.total === 0 || playerBank.total < 0) {
+  if (playerBank.total <= 0) {
     chipContainer.classList.add('hidden');
   }
 }

@@ -5,18 +5,12 @@
 }
 
 body {
-  background-color: green;
+  background-image: url(images/poker-table.png);
+  background-repeat: no-repeat;
+  background-size: cover;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
     'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   position: relative;
-}
-
-.chip {
-  position: absolute;
-  mix-blend-mode: color-burn;
-  height: 450px;
-  top: 200px;
-  left: 740px;
 }
 
 .header {
@@ -27,10 +21,17 @@ body {
 }
 
 .span {
-  background-color: rgb(255, 255, 255, 0.9);
+  background-color: #fff;
   padding: 0px 10px;
   border-radius: 10px;
   box-shadow: 2px 2px 3px;
+}
+
+.banner {
+  height: 150px;
+  position: absolute;
+  border-radius: 54px;
+  right: 5%;
 }
 
 .container {
@@ -49,7 +50,7 @@ body {
   font-size: 25px;
   font-weight: bold;
   border-radius: 5px;
-  background-color: rgb(255, 255, 255, 0.9);
+  background-color: #fff;
   padding: 0px 10px;
   min-width: 150px;
   text-align: center;
@@ -118,7 +119,7 @@ body {
   font-size: 25px;
   font-weight: bold;
   padding: 10px 20px;
-  background-color: rgb(255, 255, 255, 0.9);
+  background-color: #fff;
   border-radius: 5px;
   min-width: 100px;
   min-height: 60px;
@@ -131,7 +132,7 @@ body {
   font-size: 20px;
   padding: 5px 20px;
   margin-bottom: 10px;
-  background-color: rgb(255, 255, 255, 0.9);
+  background-color: #fff;
   border-radius: 5px;
   box-shadow: 2px 2px 10px;
 }
@@ -141,7 +142,7 @@ body {
   font-size: 20px;
   padding: 5px 20px;
   margin-bottom: 10px;
-  background-color: rgb(255, 255, 255, 0.9);
+  background-color: #fff;
   border-radius: 5px;
   cursor: pointer;
   box-shadow: 2px 2px 10px;
@@ -152,7 +153,7 @@ body {
   bottom: 25px;
   left: 80px;
   border-radius: 50%;
-  background-color: rgb(255, 255, 255, 0.9);
+  background-color: #fff;
   border: 8px dashed red;
   cursor: pointer;
   box-shadow: 2px 2px 10px;
@@ -163,7 +164,7 @@ body {
   padding: 15px 13px;
   border-radius: 50%;
   border: 3px solid red;
-  background-color: rgb(255, 255, 255, 0.9);
+  background-color: #fff;
   cursor: pointer;
 }
 
@@ -172,7 +173,7 @@ body {
   bottom: 25px;
   left: 215px;
   border-radius: 50%;
-  background-color: rgb(255, 255, 255, 0.9);
+  background-color: #fff;
   border: 8px dashed purple;
   color: purple;
   cursor: pointer;
@@ -184,7 +185,7 @@ body {
   padding: 16px;
   border-radius: 50%;
   border: 3px solid purple;
-  background-color: rgb(255, 255, 255, 0.9);
+  background-color: #fff;
   letter-spacing: 1.5px;
   cursor: pointer;
 }
@@ -194,7 +195,7 @@ body {
   bottom: 25px;
   left: 343px;
   border-radius: 50%;
-  background-color: rgb(255, 255, 255, 0.9);
+  background-color: #fff;
   border: 8px dashed blue;
   color: blue;
   cursor: pointer;
@@ -206,7 +207,7 @@ body {
   padding: 16px;
   border-radius: 50%;
   border: 3px solid blue;
-  background-color: rgb(255, 255, 255, 0.9);
+  background-color: #fff;
   letter-spacing: 1.5px;
   cursor: pointer;
 }
