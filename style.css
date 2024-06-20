@@ -11,6 +11,14 @@ body {
   position: relative;
 }
 
+.chip {
+  position: absolute;
+  mix-blend-mode: color-burn;
+  height: 450px;
+  top: 200px;
+  left: 740px;
+}
+
 .header {
   text-align: center;
   margin-top: 20px;
@@ -20,7 +28,7 @@ body {
 
 .span {
   background-color: #fff;
-  padding: 0px 40px;
+  padding: 0px 10px;
   border-radius: 10px;
   box-shadow: 2px 2px 3px;
 }
@@ -46,12 +54,16 @@ body {
   min-width: 150px;
   text-align: center;
   box-shadow: 2px 2px 5px;
+  position: relative;
+  z-index: 1;
 }
 
 .cards {
   height: 180px;
   margin: 0px 10px;
   box-shadow: 2px 2px 5px;
+  position: relative;
+  z-index: 1;
 }
 
 .round {
