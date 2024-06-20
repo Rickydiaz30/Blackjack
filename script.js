@@ -346,7 +346,6 @@ function checkForDealerBlackjack() {
   if (dealerPointsTotal === 21) {
     clearInterval(intervalId);
     dealerPoints.textContent = 'BLACKJACK!!! DEALER WINS!!!';
-
     resetBet();
     checkForBankBust();
     setTimeout(() => {

@@ -35,18 +35,7 @@ body {
   margin-top: 20px;
 }
 
-.dealer-points {
-  margin: 25px 0px;
-  font-size: 25px;
-  font-weight: bold;
-  border-radius: 5px;
-  background-color: #fff;
-  padding: 0px 10px;
-  min-width: 150px;
-  text-align: center;
-  box-shadow: 2px 2px 5px;
-}
-
+.dealer-points,
 .player-points {
   margin: 25px 0px;
   font-size: 25px;
@@ -80,21 +69,7 @@ body {
   justify-content: space-around;
 }
 
-.hit {
-  font-size: 25px;
-  font-weight: bold;
-  padding: 10px 20px;
-  border-radius: 5px;
-  width: 100px;
-  cursor: pointer;
-  box-shadow: 2px 2px 3px;
-}
-
-.hit:hover {
-  transform: translateY(-2px);
-  box-shadow: 2px 2px 5px;
-}
-
+.hit,
 .stay {
   font-size: 25px;
   font-weight: bold;
@@ -105,9 +80,14 @@ body {
   box-shadow: 2px 2px 3px;
 }
 
-.stay:hover {
+.hit:hover,
+.stay:hover,
+.place-bet:hover,
+.hundred-chip-outer:hover,
+.fifty-chip-outer:hover,
+.twenty-five-chip-outer:hover {
   transform: translateY(-2px);
-  box-shadow: 2px 2px 3px;
+  box-shadow: 2px 2px 5px;
 }
 
 .bank-bet {
@@ -142,11 +122,6 @@ body {
   box-shadow: 2px 2px 3px;
 }
 
-.place-bet:hover {
-  transform: translateY(-2px);
-  box-shadow: 2px 2px 5px;
-}
-
 .bet {
   font-size: 25px;
   font-weight: bold;
@@ -179,12 +154,6 @@ body {
   border: 8px dashed red;
   cursor: pointer;
   box-shadow: 2px 2px 3px;
-}
-
-.hundred-chip-outer:hover,
-.fifty-chip-outer:hover,
-.twenty-five-chip-outer:hover {
-  transform: translateY(-2px);
 }
 
 .hundred-chip-inner {
