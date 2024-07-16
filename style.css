@@ -27,16 +27,9 @@ body {
   box-shadow: 2px 2px 3px;
 }
 
-.banner {
-  height: 150px;
-  position: absolute;
-  border-radius: 54px;
-  right: 5%;
-}
-
 .container {
   height: 40%;
-  width: 95%;
+  width: 65%;
   margin: auto;
   display: flex;
   flex-direction: column;
