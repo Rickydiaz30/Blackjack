@@ -1,2 +1,16 @@
-This is a Blackjack game made with html, css, and javascript. The logic I used to deal the cards is like an endless random deck. If you play blackjack in a casino, you might be playing with 3, 4, 5 or more decks. So I made a function to return random numbers and associated
-them with the card number and suit. Just click on the chips in the lower left corner, then click on Bet to deal the cards. Hope you enjoy!
+## Blackjack Game (Vanilla JavaScript)
+
+This was one of my first projects where I built a full game from scratch without tutorials or frameworks.
+
+### Features:
+- Random card generation
+- Dealer logic (hits until optimal)
+- Player betting system
+- Ace value adjustment (1 or 11)
+- Game state management
+
+### What I learned:
+- DOM manipulation
+- Event-driven programming
+- Managing application state
+- Debugging complex logic flows
